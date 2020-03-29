@@ -2,8 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const profile = require('./profile')
+const PORT = process.env.PORT || 8080;
+
 require('dotenv').config();
-console.log('THIS: ', process.env.SENDGRID_API_KEY)
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -45,6 +46,6 @@ app.post('/thanks', (req, res) => {
     res.render('thanks', { contact: req.body })
 })
 
-app.listen(8080, () => {
-    console.log('listening at http://localhost:8080');
+app.listen(PORT, () => {
+    console.log(`listening at http://localhost: ${PORT}`);
 })
